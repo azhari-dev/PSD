@@ -380,7 +380,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-proyek-businesss-understanding">1. Latar Belakang Proyek (Businesss Understanding)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-inti-dan-pertanyaan-kunci-dalam-business-understanding">Komponen Inti dan Pertanyaan Kunci dalam Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-tujuan-bisnis-determine-business-objectives">1. Menentukan Tujuan Bisnis (Determine Business Objectives)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menilai-situasi-saat-ini-assess-situation">2. Menilai Situasi Saat Ini (Assess Situation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menerjemahkan-tujuan-bisnis-menjadi-tujuan-sains-data-data-mining-data-science-goals">3. Menerjemahkan Tujuan Bisnis menjadi Tujuan Sains Data (Data Mining/Data Science Goals)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mendefinisikan-kriteria-kesuksesan-define-success-criteria">4. Mendefinisikan Kriteria Kesuksesan (Define Success Criteria)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siapa-saja-yang-terlibat">Siapa Saja yang Terlibat?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-deliverable-dari-fase-business-understanding">Output/Deliverable dari Fase Business Understanding</a></li>
 </ul>
             </nav>
         </div>
@@ -394,8 +400,127 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
 <h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
-<section id="latar-belakang-proyek-businesss-understanding">
-<h2>1. Latar Belakang Proyek (Businesss Understanding)<a class="headerlink" href="#latar-belakang-proyek-businesss-understanding" title="Link to this heading">#</a></h2>
+<p><strong>Business Understanding</strong> adalah fase awal dalam siklus hidup proyek sains data di mana fokus utamanya adalah memahami tujuan dan kebutuhan proyek dari perspektif bisnis. Tujuannya adalah untuk mengubah masalah bisnis yang seringkali abstrak (“Kita ingin meningkatkan penjualan”) menjadi definisi masalah sains data yang jelas, terukur, dan dapat ditindaklanjuti (“Buat model untuk memprediksi produk mana yang kemungkinan besar akan dibeli oleh pelanggan X jika kita mengirimkan email promosi”).</p>
+<section id="komponen-inti-dan-pertanyaan-kunci-dalam-business-understanding">
+<h2>Komponen Inti dan Pertanyaan Kunci dalam Business Understanding<a class="headerlink" href="#komponen-inti-dan-pertanyaan-kunci-dalam-business-understanding" title="Link to this heading">#</a></h2>
+<p>Fase ini dapat dipecah menjadi beberapa langkah atau komponen utama. Untuk setiap komponen, ada serangkaian pertanyaan kunci yang harus dijawab.</p>
+<p>Mari kita gunakan studi kasus agar lebih mudah dipahami: <strong>Sebuah perusahaan telekomunikasi (Telco) mengalami tingkat perpindahan pelanggan (churn rate)</strong> yang tinggi.</p>
+</section>
+<section id="menentukan-tujuan-bisnis-determine-business-objectives">
+<h2>1. Menentukan Tujuan Bisnis (Determine Business Objectives)<a class="headerlink" href="#menentukan-tujuan-bisnis-determine-business-objectives" title="Link to this heading">#</a></h2>
+<p>Ini adalah gambaran besar. Apa yang ingin dicapai oleh perusahaan secara strategis?</p>
+<ul class="simple">
+<li><p><strong>Apa masalah utama yang dihadapi bisnis?</strong></p>
+<ul>
+<li><p>Contoh Telco: “Kami kehilangan terlalu banyak pelanggan ke pesaing setiap bulannya, yang menggerus pendapatan dan pangsa pasar kami.”</p></li>
+</ul>
+</li>
+<li><p><strong>Apa tujuan akhir dari proyek ini dari sudut pandang bisnis?</strong></p>
+<ul>
+<li><p>Contoh Telco: “Tujuan utamanya adalah <strong>mengurangi tingkat churn pelanggan sebesar 20%</strong> dalam enam bulan ke depan.”</p></li>
+</ul>
+</li>
+<li><p><strong>Bagaimana solusi dari proyek ini akan membantu perusahaan?</strong></p>
+<ul>
+<li><p>Contoh Telco: “Dengan mempertahankan lebih banyak pelanggan, kita dapat meningkatkan Customer Lifetime Value (CLV), menstabilkan pendapatan, dan mengurangi biaya akuisisi pelanggan baru yang mahal.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="menilai-situasi-saat-ini-assess-situation">
+<h2>2. Menilai Situasi Saat Ini (Assess Situation)<a class="headerlink" href="#menilai-situasi-saat-ini-assess-situation" title="Link to this heading">#</a></h2>
+<p>Ini adalah inventarisasi: apa yang kita miliki, apa yang kita ketahui, dan apa kendalanya?</p>
+<ul class="simple">
+<li><p><strong>Sumber Daya:</strong> Aset apa yang kita miliki? (manusia, data, infrastruktur)</p>
+<ul>
+<li><p>Contoh Telco: “Kita memiliki tim analis data, akses ke data warehouse yang berisi data demografi pelanggan, riwayat panggilan, penggunaan data internet, data tagihan, dan log keluhan pelanggan.”</p></li>
+</ul>
+</li>
+<li><p><strong>Batasan (Constraints):</strong> Apa saja batasan yang ada? (anggaran, waktu, regulasi)</p>
+<ul>
+<li><p>Contoh Telco: “Proyek ini harus memberikan hasil awal dalam 3 bulan. Kita juga harus mematuhi regulasi privasi data pelanggan (GDPR/UU PDP) dan tidak boleh menggunakan data pribadi yang sensitif.”</p></li>
+</ul>
+</li>
+<li><p><strong>Asumsi:</strong> Asumsi apa yang kita buat?</p>
+<ul>
+<li><p>Contoh Telco: “Kami berasumsi bahwa data yang ada cukup untuk mengidentifikasi pola perilaku pelanggan yang akan churn. Kami juga berasumsi bahwa tim marketing memiliki kapasitas untuk menindaklanjuti hasil dari model.”</p></li>
+</ul>
+</li>
+<li><p><strong>Risiko:</strong> Apa saja potensi masalah yang bisa menggagalkan proyek?</p>
+<ul>
+<li><p>Contoh Telco: “Risikonya adalah kualitas data yang buruk (banyak data hilang), atau model yang dihasilkan terlalu rumit untuk dijelaskan kepada tim marketing.”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="menerjemahkan-tujuan-bisnis-menjadi-tujuan-sains-data-data-mining-data-science-goals">
+<h2>3. Menerjemahkan Tujuan Bisnis menjadi Tujuan Sains Data (Data Mining/Data Science Goals)<a class="headerlink" href="#menerjemahkan-tujuan-bisnis-menjadi-tujuan-sains-data-data-mining-data-science-goals" title="Link to this heading">#</a></h2>
+<p>Ini adalah langkah penerjemahan krusial. Bagaimana kita menggunakan data untuk mencapai tujuan bisnis?</p>
+<ul>
+<li><p><strong>Tujuan Bisnis:</strong> Mengurangi churn pelanggan.</p></li>
+<li><p><strong>Tujuan Sains Data:</strong> Ini harus lebih spesifik dan teknis.</p>
+<ul class="simple">
+<li><p>Contoh Telco (Terjemahan):</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>“Membangun sebuah model klasifikasi</strong> yang dapat memprediksi probabilitas setiap pelanggan akan churn dalam 30 hari ke depan.”</p></li>
+<li><p><strong>“Mengidentifikasi faktor-faktor utama (key drivers)</strong> yang paling berpengaruh terhadap keputusan pelanggan untuk churn (misalnya, jumlah keluhan, kenaikan tagihan, kualitas jaringan).”</p></li>
+<li><p><strong>“Melakukan segmentasi pelanggan</strong> berdasarkan risiko churn mereka (risiko tinggi, sedang, rendah) untuk tindakan marketing yang lebih tertarget.”</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="mendefinisikan-kriteria-kesuksesan-define-success-criteria">
+<h2>4. Mendefinisikan Kriteria Kesuksesan (Define Success Criteria)<a class="headerlink" href="#mendefinisikan-kriteria-kesuksesan-define-success-criteria" title="Link to this heading">#</a></h2>
+<p>Bagaimana kita mengukur keberhasilan? Ini harus didefinisikan dari dua sisi: bisnis dan teknis.</p>
+<ul class="simple">
+<li><p><strong>Kriteria Kesuksesan Bisnis:</strong> Harus terukur dan terkait langsung dengan tujuan bisnis awal.</p>
+<ul>
+<li><p>Contoh Telco:</p>
+<ul>
+<li><p>“Tingkat churn bulanan berkurang setidaknya 15% pada kelompok pelanggan yang diberi perlakuan khusus berdasarkan hasil model.”</p></li>
+<li><p>“Tingkat keberhasilan kampanye retensi (misalnya, pelanggan menerima tawaran diskon dan tetap bertahan) meningkat sebesar 25%.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Kriteria Kesuksesan Teknis/Sains Data:</strong> Metrik untuk mengevaluasi performa model.</p>
+<ul>
+<li><p>Contoh Telco:</p>
+<ul>
+<li><p>“Model prediksi harus mencapai akurasi lebih dari 85%.”</p></li>
+<li><p>“Model harus memiliki <strong>Recall (Sensitivity)</strong> setidaknya 80% untuk kelas ‘churn’, yang berarti model harus mampu mengidentifikasi setidaknya 80 dari 100 pelanggan yang sebenarnya akan churn. Ini penting karena lebih merugikan jika kita gagal mengidentifikasi pelanggan yang akan pergi daripada salah mengira pelanggan setia akan pergi.”</p></li>
+<li><p>“Model harus dapat memberikan skor risiko untuk seluruh basis pelanggan dalam waktu kurang dari 24 jam.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="siapa-saja-yang-terlibat">
+<h2>Siapa Saja yang Terlibat?<a class="headerlink" href="#siapa-saja-yang-terlibat" title="Link to this heading">#</a></h2>
+<p>Fase ini sangat kolaboratif dan melibatkan berbagai pihak:</p>
+<ul class="simple">
+<li><p><strong>Pemangku Kepentingan Bisnis (Business Stakeholders):</strong> Manajer produk, kepala departemen marketing, direktur, dll. Mereka adalah pemilik masalah.</p></li>
+<li><p><strong>Pakar Domain (Subject Matter Experts - SMEs):</strong> Orang yang sangat memahami seluk-beluk operasional bisnis, misalnya staf layanan pelanggan senior yang tahu persis keluhan apa yang sering memicu churn.</p></li>
+<li><p><strong>Tim Sains Data (Data Scientists &amp; Analysts):</strong> Bertugas menerjemahkan masalah bisnis, memahami kelayakan teknis, dan merumuskan rencana proyek.</p></li>
+<li><p><strong>Tim IT/Data Engineering:</strong> Memberikan informasi mengenai ketersediaan, akses, dan kualitas data.</p></li>
+</ul>
+</section>
+<section id="output-deliverable-dari-fase-business-understanding">
+<h2>Output/Deliverable dari Fase Business Understanding<a class="headerlink" href="#output-deliverable-dari-fase-business-understanding" title="Link to this heading">#</a></h2>
+<p>Hasil akhir dari fase ini biasanya adalah sebuah dokumen formal yang disebut Project Charter atau <strong>Dokumen Lingkup Proyek</strong>. Dokumen ini merangkum semua poin di atas, termasuk:</p>
+<ol class="arabic simple">
+<li><p><strong>Latar Belakang Masalah (Background)</strong></p></li>
+<li><p><strong>Tujuan Bisnis (Business Objectives)</strong></p></li>
+<li><p><strong>Tujuan &amp; Ruang Lingkup Proyek Sains Data (Data Science Goals &amp; Scope)</strong></p></li>
+<li><p><strong>Kriteria Kesuksesan (Business &amp; Technical Success Criteria)</strong></p></li>
+<li><p><strong>Rencana Proyek Awal (Initial Project Plan):</strong> Garis besar tahapan, estimasi waktu, dan sumber daya yang dibutuhkan.</p></li>
+<li><p><strong>Identifikasi Risiko dan Rencana Mitigasi (Risks &amp; Mitigation Plan)</strong></p></li>
+<li><p><strong>Asumsi dan Batasan (Assumptions &amp; Constraints)</strong></p></li>
+</ol>
+<p>Dokumen ini menjadi “kontrak” dan panduan yang disetujui bersama oleh semua pihak sebelum proyek benar-benar melangkah ke fase pengumpulan data.</p>
+<p>Secara ringkas, fase <strong>Business Understanding</strong> adalah tentang bertanya “mengapa”, “apa”, dan “bagaimana” dari perspektif bisnis sebelum terjun ke dalam lautan data. Ini adalah proses investigasi yang memastikan bahwa pada akhir proyek, solusi yang dihasilkan tidak hanya canggih secara teknis, tetapi juga memberikan dampak nyata bagi bisnis.</p>
 </section>
 </section>
 
@@ -463,7 +588,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-proyek-businesss-understanding">1. Latar Belakang Proyek (Businesss Understanding)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-inti-dan-pertanyaan-kunci-dalam-business-understanding">Komponen Inti dan Pertanyaan Kunci dalam Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-tujuan-bisnis-determine-business-objectives">1. Menentukan Tujuan Bisnis (Determine Business Objectives)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menilai-situasi-saat-ini-assess-situation">2. Menilai Situasi Saat Ini (Assess Situation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menerjemahkan-tujuan-bisnis-menjadi-tujuan-sains-data-data-mining-data-science-goals">3. Menerjemahkan Tujuan Bisnis menjadi Tujuan Sains Data (Data Mining/Data Science Goals)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mendefinisikan-kriteria-kesuksesan-define-success-criteria">4. Mendefinisikan Kriteria Kesuksesan (Define Success Criteria)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siapa-saja-yang-terlibat">Siapa Saja yang Terlibat?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-deliverable-dari-fase-business-understanding">Output/Deliverable dari Fase Business Understanding</a></li>
 </ul>
   </nav></div>
 
