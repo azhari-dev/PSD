@@ -8,6 +8,10 @@ chapters:
   - file: business-understanding
   - file: data-understanding
     sections:
-    - file: eksplorasi-data
-  
+      - file: eksplorasi-data
+  - file: data-preprocessing
+    sections:
+      - file: deteksi-outlier
+      - file: imbalanced-learn
+
   # - file: mymarkdownfile
