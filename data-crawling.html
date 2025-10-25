@@ -60,7 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-crawling';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Eksplorasi Data (NO2 Sidoarjo)" href="eksplorasi-data-no2.html" />
+    <link rel="next" title="Eksplorasi Data (NO2 Sidoarjo)" href="eksplorasi-data-no2.html" />
+    <link rel="prev" title="Forecasting" href="forecasting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -190,8 +191,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="forecasting.html">Forecasting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Understanding (NO2 Kabupaten Sidoarjo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing Data (NO2 Sidoarjo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knn-regression.html">KNN Regression</a></li>
 </ul>
 </details></li>
 </ul>
@@ -444,8 +447,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">     </span>Traceback (most recent call last)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">-----------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">       </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
@@ -681,18 +684,29 @@ File ditemukan: timeseries.csv
 <section id="struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode">
 <h2>1.2 Struktur Kolom (kolom yang muncul berdasarkan cuplikan &amp; kode)<a class="headerlink" href="#struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode" title="Link to this heading">#</a></h2>
 <p>Setelah job dieksekusi dan CSV dibaca ke pandas.DataFrame, kolom yang tampak pada cuplikan adalah:</p>
-<p>date</p>
-<p>Tipe: datetime (pada kode lalu dikonversi pd.to_datetime(df[“date”])).</p>
-<p>Format contoh: 2024-10-12 00:00:00+00:00 → termasuk offset zona waktu (+00:00 / UTC).</p>
-<p>Arti: tanggal tengah periode agregasi (rata-rata harian). Karena agregasi period=”day”, setiap baris mewakili nilai rata-rata NO₂ untuk hari tersebut.</p>
-<p>feature_index</p>
-<p>Tipe: integer (contoh: 0 pada banyak baris).</p>
-<p>Arti kemungkinan: indeks fitur/patch/pixel tile dari koleksi openEO (bila batch menghasilkan beberapa fitur/spatial tiles). Karena kamu meng-aggregate_spatial menggunakan satu AOI, nilai ini sering tetap 0. Bila pipeline menghasilkan beberapa spatial features, nilai ini membantu membedakan feature geometry.</p>
-<p>NO2</p>
-<p>Tipe: float (angka desimal kecil, atau NaN bila tidak ada pengukuran valid hari itu).</p>
-<p>Arti: nilai rata-rata NO₂ hasil agregasi spasial+temporal untuk AOI pada tanggal tersebut.</p>
-<p>Rentang: pada cuplikan terlihat sangat kecil (mis. 0.000033, 0.000054), menandakan unit kolom kepadatan (perlu verifikasi metadata).</p>
-<p>NaN: menandakan tidak ada data valid (mis. semua piksel negatif/invalid pada hari itu, atau tidak ada pengamatan yang lolos mask).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p>
+<ul>
+<li><p>Tipe: datetime (pada kode lalu dikonversi <code class="docutils literal notranslate"><span class="pre">pd.to_datetime(df[&quot;date&quot;])</span></code>).</p></li>
+<li><p>Format contoh: <code class="docutils literal notranslate"><span class="pre">2025-10-12</span> <span class="pre">00:00:00+00:00</span></code> → termasuk offset zona waktu (<code class="docutils literal notranslate"><span class="pre">+00:00</span></code> / UTC).</p></li>
+<li><p>Arti: tanggal tengah periode agregasi (rata-rata harian). Karena agregasi <code class="docutils literal notranslate"><span class="pre">period=&quot;day&quot;</span></code>, setiap baris mewakili nilai rata-rata NO₂ untuk hari tersebut.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_index</span></code></p>
+<ul>
+<li><p>Tipe: integer (contoh: <code class="docutils literal notranslate"><span class="pre">0</span></code> pada banyak baris).</p></li>
+<li><p>Arti kemungkinan: indeks fitur/patch/pixel tile dari koleksi openEO (bila batch menghasilkan beberapa fitur/spatial tiles). Karena kamu meng-<code class="docutils literal notranslate"><span class="pre">aggregate_spatial</span></code> menggunakan satu AOI, nilai ini sering tetap 0. Bila pipeline menghasilkan beberapa spatial features, nilai ini membantu membedakan feature geometry.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2</span></code></p>
+<ul>
+<li><p>Tipe: float (angka desimal kecil, atau <code class="docutils literal notranslate"><span class="pre">NaN</span></code> bila tidak ada pengukuran valid hari itu).</p></li>
+<li><p>Arti: nilai rata-rata NO₂ hasil agregasi spasial+temporal untuk AOI pada tanggal tersebut.</p></li>
+<li><p>Rentang: pada cuplikan terlihat sangat kecil (mis. <code class="docutils literal notranslate"><span class="pre">0.000033</span></code>, <code class="docutils literal notranslate"><span class="pre">0.000054</span></code>), menandakan unit kolom kepadatan (perlu verifikasi metadata).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: menandakan tidak ada data valid (mis. semua piksel negatif/invalid pada hari itu, atau tidak ada pengamatan yang lolos mask).</p></li>
+</ul>
+</li>
+</ul>
 <p>Contoh Table Data :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -860,9 +874,11 @@ File ditemukan: timeseries.csv
 </div></div></div>
 </div>
 <p>Berdasarkan hasil pemeriksaan terhadap dataset yang diperoleh dari platform Copernicus Open Data (Sentinel-5P L2), terdapat tiga kolom utama yaitu:</p>
-<p>date — berisi informasi tanggal pengambilan data, tanpa nilai kosong (0 missing value).</p>
-<p>feature_index — kolom indeks fitur yang digunakan sistem, tanpa nilai kosong (0 missing value).</p>
-<p>NO2 — berisi konsentrasi Nitrogen Dioksida (NO₂) rata-rata harian pada area pengamatan, dengan 254 nilai yang hilang (missing values).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code> — berisi informasi tanggal pengambilan data, tanpa nilai kosong (0 missing value).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_index</span></code> — kolom indeks fitur yang digunakan sistem, tanpa nilai kosong (0 missing value).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2</span></code> — berisi konsentrasi Nitrogen Dioksida (NO₂) rata-rata harian pada area pengamatan, dengan 254 nilai yang hilang (missing values).</p></li>
+</ul>
 <p>Kehilangan data pada kolom NO₂ kemungkinan disebabkan oleh beberapa faktor seperti gangguan atmosfer, awan tebal, atau noise dalam citra satelit Sentinel-5P yang menghambat pembacaan sensor.</p>
 </section>
 </section>
@@ -898,13 +914,22 @@ File ditemukan: timeseries.csv
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="eksplorasi-data-no2.html"
+       href="forecasting.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Forecasting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="eksplorasi-data-no2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Eksplorasi Data (NO2 Sidoarjo)</p>
       </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

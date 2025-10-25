@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Preprocessing Data (NO2 Semarang) &#8212; My sample book</title>
+    <title>Preprocessing Data (NO2 Sidoarjo) &#8212; My sample book</title>
   
   
   
@@ -193,7 +193,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="forecasting.html">Forecasting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data-crawling.html">Data Understanding (NO2 Kabupaten Sidoarjo)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Preprocessing Data (NO2 Semarang)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Preprocessing Data (NO2 Sidoarjo)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="knn-regression.html">KNN Regression</a></li>
 </ul>
 </details></li>
@@ -369,7 +369,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -380,11 +382,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Preprocessing Data (NO2 Semarang)</h1>
+    <h1>Preprocessing Data (NO2 Sidoarjo)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menangani-missing-value">1.1 Menangani Missing Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data">Contoh Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-supervised-learning">1.2 Convert Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah - Langkah</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -394,9 +411,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-data-no2-semarang">
-<h1>Preprocessing Data (NO2 Semarang)<a class="headerlink" href="#preprocessing-data-no2-semarang" title="Link to this heading">#</a></h1>
-<p>Pada khasus ini data di processing dengan 2 cara menangani data missing value dan membuat data menjadi supervised</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-data-no2-sidoarjo">
+<h1>Preprocessing Data (NO2 Sidoarjo)<a class="headerlink" href="#preprocessing-data-no2-sidoarjo" title="Link to this heading">#</a></h1>
+<p>Pada khasus ini data di processing dengan 2 cara menangani data <strong>missing value</strong> dan membuat data menjadi <strong>supervised</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -406,13 +423,17 @@ document.write(`
 </div>
 </div>
 </div>
-<p>1.1 Menangani Missing Value
-Untuk menjaga kontinuitas data deret waktu (time series) dan memastikan model prediksi dapat belajar dengan baik dari pola historis, nilai NO₂ yang hilang akan ditangani menggunakan metode interpolasi.</p>
-<p>Metode interpolasi linier (linear interpolation) dipilih karena:</p>
-<p>Dapat memperkirakan nilai hilang berdasarkan tren perubahan sebelum dan sesudah tanggal yang kosong.</p>
-<p>Cocok untuk data lingkungan yang memiliki perubahan relatif halus dari hari ke hari.</p>
-<p>Tidak mengubah struktur temporal dataset, sehingga tetap menjaga urutan kronologis data.</p>
-<p>Contoh Data</p>
+<section id="menangani-missing-value">
+<h2>1.1 Menangani Missing Value<a class="headerlink" href="#menangani-missing-value" title="Link to this heading">#</a></h2>
+<p>Untuk menjaga kontinuitas data deret waktu (time series) dan memastikan model prediksi dapat belajar dengan baik dari pola historis, nilai NO₂ yang hilang akan ditangani menggunakan metode interpolasi.</p>
+<p>Metode interpolasi linier (<code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">interpolation</span></code>) dipilih karena:</p>
+<ul class="simple">
+<li><p>Dapat memperkirakan nilai hilang berdasarkan tren perubahan sebelum dan sesudah tanggal yang kosong.</p></li>
+<li><p>Cocok untuk data lingkungan yang memiliki perubahan relatif halus dari hari ke hari.</p></li>
+<li><p>Tidak mengubah struktur temporal dataset, sehingga tetap menjaga urutan kronologis data.</p></li>
+</ul>
+<section id="contoh-data">
+<h3>Contoh Data<a class="headerlink" href="#contoh-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data-copernicus/timeseries.csv&#39;</span><span class="p">)</span>
@@ -547,7 +568,7 @@ Untuk menjaga kontinuitas data deret waktu (time series) dan memastikan model pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Harseven\AppData\Local\Temp\ipykernel_7196\1178675646.py:12: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Harseven\AppData\Local\Temp\ipykernel_3116\1178675646.py:12: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   ax.text(i, v + 0.5, f&quot;{v} ({missing_percent[i]:.1f}%)&quot;,
 </pre></div>
 </div>
@@ -742,12 +763,16 @@ Untuk menjaga kontinuitas data deret waktu (time series) dan memastikan model pr
 </div>
 <p>Setelah dilakukan proses interpolasi linier pada kolom NO₂, hasil pemeriksaan ulang terhadap data menunjukkan bahwa seluruh nilai yang hilang telah berhasil terisi.</p>
 <p>Dengan demikian, dataset kini bersih dari missing value dan siap digunakan untuk tahap selanjutnya, yaitu pemodelan prediksi konsentrasi NO₂ menggunakan pendekatan K-Nearest Neighbors (KNN) Regression.</p>
-<p>1.2 Convert Supervised Learning
-Dalam proyek ini, dilakukan proses konversi data time series menjadi bentuk supervised learning menggunakan Python. Konversi ini bertujuan agar data time series dapat digunakan untuk model prediksi berbasis machine learning seperti regresi atau neural network.</p>
+</section>
+</section>
+<section id="convert-supervised-learning">
+<h2>1.2 Convert Supervised Learning<a class="headerlink" href="#convert-supervised-learning" title="Link to this heading">#</a></h2>
+<p>Dalam proyek ini, dilakukan proses konversi data time series menjadi bentuk supervised learning menggunakan Python. Konversi ini bertujuan agar data time series dapat digunakan untuk model prediksi berbasis machine learning seperti regresi atau neural network.</p>
 <p>Pada dasarnya, data time series hanya berisi nilai urutan waktu, sedangkan supervised learning membutuhkan pasangan input (X) dan output (y). Oleh karena itu, proses konversi dilakukan dengan cara menggeser nilai waktu sebelumnya menjadi fitur (lag features).</p>
 <p>Dalam kasus ini saya bereksperiment 2 - 5 hari sebelum nya menjadi fitur</p>
-<p>Langkah - Langkah
-Menginisialisasi day 2 - 5</p>
+<section id="langkah-langkah">
+<h3>Langkah - Langkah<a class="headerlink" href="#langkah-langkah" title="Link to this heading">#</a></h3>
+<p><strong>Menginisialisasi day 2 - 5</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day2</span> <span class="o">=</span> <span class="n">new_df</span>
@@ -758,7 +783,7 @@ Menginisialisasi day 2 - 5</p>
 </div>
 </div>
 </div>
-<p>Membuat data supervised menggunakan t1, t2</p>
+<p><strong>Membuat data supervised menggunakan t1, t2</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day2</span> <span class="o">=</span> <span class="n">day2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
@@ -869,7 +894,7 @@ Menginisialisasi day 2 - 5</p>
 <p>1095 rows × 3 columns</p>
 </div></div></div>
 </div>
-<p>Membuat data supervised menggunakan t1, t2, t3</p>
+<p><strong>Membuat data supervised menggunakan t1, t2, t3</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day3</span> <span class="o">=</span> <span class="n">day3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
@@ -992,7 +1017,7 @@ Menginisialisasi day 2 - 5</p>
 <p>1094 rows × 4 columns</p>
 </div></div></div>
 </div>
-<p>Membuat data supervised menggunakan t1, t2, t3, t4</p>
+<p><strong>Membuat data supervised menggunakan t1, t2, t3, t4</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day4</span> <span class="o">=</span> <span class="n">day4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
@@ -1127,7 +1152,7 @@ Menginisialisasi day 2 - 5</p>
 <p>1093 rows × 5 columns</p>
 </div></div></div>
 </div>
-<p>Membuat data supervised menggunakan t1, t2, t3, t4, t5</p>
+<p>*** embuat data supervised menggunakan t1, t2, t3, t4, t5</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day5</span> <span class="o">=</span> <span class="n">day5</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
@@ -1276,6 +1301,8 @@ Menginisialisasi day 2 - 5</p>
 </div></div></div>
 </div>
 </section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1331,6 +1358,28 @@ Menginisialisasi day 2 - 5</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menangani-missing-value">1.1 Menangani Missing Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-data">Contoh Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-supervised-learning">1.2 Convert Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah">Langkah - Langkah</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
