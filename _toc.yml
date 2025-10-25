@@ -13,5 +13,11 @@ chapters:
     sections:
       - file: deteksi-outlier
       - file: imbalanced-learn
+  - file: forecasting
+    sections:
+      - file: data-crawling
+      - file: eksplorasi-data-no2
+      - file: preprocessing
+      - file: knn-regression
 
   # - file: mymarkdownfile
