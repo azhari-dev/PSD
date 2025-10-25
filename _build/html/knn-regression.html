@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'knn-regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Preprocessing Data (NO2 Semarang)" href="preprocessing.html" />
+    <link rel="prev" title="Preprocessing Data (NO2 Sidoarjo)" href="preprocessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,7 +192,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="forecasting.html">Forecasting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data-crawling.html">Data Understanding (NO2 Kabupaten Sidoarjo)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing Data (NO2 Semarang)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing Data (NO2 Sidoarjo)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">KNN Regression</a></li>
 </ul>
 </details></li>
@@ -368,7 +368,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -384,6 +386,27 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-supervised">2. Load Dataset Supervised</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorasi-data">3. Explorasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data-untuk-modeling">4. Persiapan Data untuk Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-train-dan-test">5. Split Data Train dan Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-regression">7. Training Model KNN Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-pada-data-test">8. Prediksi pada Data Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">9. Evaluasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi">10. Visualisasi Hasil Prediksi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis">11. Residual Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-mencari-k-optimal">12. Hyperparameter Tuning - Mencari K Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-dengan-k-optimal">13. Training Model dengan K Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-default-vs-optimal">14. Perbandingan Model Default vs Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-model-optimal">15. Visualisasi Hasil Model Optimal</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -396,10 +419,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="knn-regression">
 <h1>KNN Regression<a class="headerlink" href="#knn-regression" title="Link to this heading">#</a></h1>
 <p>Implementasi KNN Regression untuk forecasting data time series NO2 dengan lag 7.</p>
-<ol class="arabic simple">
-<li><p>Import Library
-Import library yang diperlukan untuk KNN Regression, termasuk pandas untuk manipulasi data, numpy untuk operasi numerik, matplotlib dan seaborn untuk visualisasi, serta scikit-learn untuk modeling dan evaluasi.</p></li>
-</ol>
+<section id="import-library">
+<h2>1. Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h2>
+<p>Import library yang diperlukan untuk KNN Regression, termasuk pandas untuk manipulasi data, numpy untuk operasi numerik, matplotlib dan seaborn untuk visualisasi, serta scikit-learn untuk modeling dan evaluasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -428,10 +450,10 @@ Import library yang diperlukan untuk KNN Regression, termasuk pandas untuk manip
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Load Dataset Supervised
-Load dataset supervised dengan lag 7 yang telah dipersiapkan sebelumnya. Dataset ini berisi nilai NO2 saat ini dan nilai-nilai lag (NO2 pada hari-hari sebelumnya).</p></li>
-</ol>
+</section>
+<section id="load-dataset-supervised">
+<h2>2. Load Dataset Supervised<a class="headerlink" href="#load-dataset-supervised" title="Link to this heading">#</a></h2>
+<p>Load dataset supervised dengan lag 7 yang telah dipersiapkan sebelumnya. Dataset ini berisi nilai NO2 saat ini dan nilai-nilai lag (NO2 pada hari-hari sebelumnya).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset/supervised_data_lag_7.csv&#39;</span><span class="p">)</span>
@@ -598,10 +620,10 @@ Load dataset supervised dengan lag 7 yang telah dipersiapkan sebelumnya. Dataset
 </table>
 </div></div></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Explorasi Data
-Melihat informasi dataset meliputi tipe data, deskripsi statistik, dan pengecekan missing values untuk memastikan kualitas data sebelum modeling.</p></li>
-</ol>
+</section>
+<section id="explorasi-data">
+<h2>3. Explorasi Data<a class="headerlink" href="#explorasi-data" title="Link to this heading">#</a></h2>
+<p>Melihat informasi dataset meliputi tipe data, deskripsi statistik, dan pengecekan missing values untuk memastikan kualitas data sebelum modeling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Informasi dataset</span>
@@ -710,11 +732,11 @@ dtype: int64
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Persiapan Data untuk Modeling
-Identifikasi Kolom Dataset
-Langkah pertama adalah mengidentifikasi kolom-kolom yang ada dalam dataset untuk menentukan mana yang akan menjadi target (variabel yang akan diprediksi) dan mana yang akan menjadi fitur (variabel prediktor).</p></li>
-</ol>
+</section>
+<section id="persiapan-data-untuk-modeling">
+<h2>4. Persiapan Data untuk Modeling<a class="headerlink" href="#persiapan-data-untuk-modeling" title="Link to this heading">#</a></h2>
+<p>Identifikasi Kolom Dataset
+Langkah pertama adalah mengidentifikasi kolom-kolom yang ada dalam dataset untuk menentukan mana yang akan menjadi target (variabel yang akan diprediksi) dan mana yang akan menjadi fitur (variabel prediktor).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kolom dalam dataset:&quot;</span><span class="p">)</span>
@@ -783,10 +805,10 @@ Kolom fitur yang digunakan:
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="5">
-<li><p>Split Data Train dan Test
-Membagi data menjadi data training (80%) dan testing (20%). Gunakan shuffle=False untuk menjaga urutan waktu pada data time series.</p></li>
-</ol>
+</section>
+<section id="split-data-train-dan-test">
+<h2>5. Split Data Train dan Test<a class="headerlink" href="#split-data-train-dan-test" title="Link to this heading">#</a></h2>
+<p>Membagi data menjadi data training (80%) dan testing (20%). Gunakan shuffle=False untuk menjaga urutan waktu pada data time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
@@ -836,10 +858,10 @@ Std X_train_scaled: 0.935414
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="7">
-<li><p>Training Model KNN Regression
-Membuat model KNN Regression dengan parameter awal: k=5 neighbors, uniform weights, dan euclidean distance sebagai metric.</p></li>
-</ol>
+</section>
+<section id="training-model-knn-regression">
+<h2>7. Training Model KNN Regression<a class="headerlink" href="#training-model-knn-regression" title="Link to this heading">#</a></h2>
+<p>Membuat model KNN Regression dengan parameter awal: k=5 neighbors, uniform weights, dan euclidean distance sebagai metric.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
@@ -862,10 +884,10 @@ Metric: euclidean
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="8">
-<li><p>Prediksi pada Data Test
-Melakukan prediksi pada data test dan data train menggunakan model yang telah ditraining.</p></li>
-</ol>
+</section>
+<section id="prediksi-pada-data-test">
+<h2>8. Prediksi pada Data Test<a class="headerlink" href="#prediksi-pada-data-test" title="Link to this heading">#</a></h2>
+<p>Melakukan prediksi pada data test dan data train menggunakan model yang telah ditraining.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
@@ -884,10 +906,10 @@ Shape y_pred: (76,)
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="9">
-<li><p>Evaluasi Model
-Menghitung metrik evaluasi model meliputi MSE (Mean Squared Error), RMSE (Root Mean Squared Error), MAE (Mean Absolute Error), dan R² Score untuk data training dan testing.</p></li>
-</ol>
+</section>
+<section id="evaluasi-model">
+<h2>9. Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
+<p>Menghitung metrik evaluasi model meliputi MSE (Mean Squared Error), RMSE (Root Mean Squared Error), MAE (Mean Absolute Error), dan R² Score untuk data training dan testing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_test</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -938,10 +960,10 @@ R²   : -0.327492
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="10">
-<li><p>Visualisasi Hasil Prediksi
-Visualisasi hasil prediksi dengan dua plot: perbandingan time series antara nilai aktual dan prediksi, serta scatter plot untuk melihat seberapa dekat prediksi dengan nilai aktual.</p></li>
-</ol>
+</section>
+<section id="visualisasi-hasil-prediksi">
+<h2>10. Visualisasi Hasil Prediksi<a class="headerlink" href="#visualisasi-hasil-prediksi" title="Link to this heading">#</a></h2>
+<p>Visualisasi hasil prediksi dengan dua plot: perbandingan time series antara nilai aktual dan prediksi, serta scatter plot untuk melihat seberapa dekat prediksi dengan nilai aktual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot prediksi vs actual</span>
@@ -975,10 +997,10 @@ Visualisasi hasil prediksi dengan dua plot: perbandingan time series antara nila
 <img alt="_images/e244bcd85be37ab0f82ae804175bd473c94c0410800b050dedf94d37e20cb120.png" src="_images/e244bcd85be37ab0f82ae804175bd473c94c0410800b050dedf94d37e20cb120.png" />
 </div>
 </div>
-<ol class="arabic simple" start="11">
-<li><p>Residual Analysis
-Analisis residual (selisih antara nilai aktual dan prediksi) untuk mengevaluasi kualitas model melalui residual plot, histogram distribusi residual, dan Q-Q plot untuk cek normalitas.</p></li>
-</ol>
+</section>
+<section id="residual-analysis">
+<h2>11. Residual Analysis<a class="headerlink" href="#residual-analysis" title="Link to this heading">#</a></h2>
+<p>Analisis residual (selisih antara nilai aktual dan prediksi) untuk mengevaluasi kualitas model melalui residual plot, histogram distribusi residual, dan Q-Q plot untuk cek normalitas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung residual</span>
@@ -1026,10 +1048,10 @@ Std Residual: 0.000013
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="12">
-<li><p>Hyperparameter Tuning - Mencari K Optimal
-Mencari nilai k (jumlah neighbors) optimal dengan mencoba berbagai nilai k dari 1 hingga 20, kemudian membandingkan R² Score pada data training dan testing untuk setiap nilai k.</p></li>
-</ol>
+</section>
+<section id="hyperparameter-tuning-mencari-k-optimal">
+<h2>12. Hyperparameter Tuning - Mencari K Optimal<a class="headerlink" href="#hyperparameter-tuning-mencari-k-optimal" title="Link to this heading">#</a></h2>
+<p>Mencari nilai k (jumlah neighbors) optimal dengan mencoba berbagai nilai k dari 1 hingga 20, kemudian membandingkan R² Score pada data training dan testing untuk setiap nilai k.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mencari nilai k optimal</span>
@@ -1074,10 +1096,10 @@ Best Test Score (R²): -0.065045
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="13">
-<li><p>Training Model dengan K Optimal
-Melatih ulang model KNN menggunakan nilai k optimal yang telah ditemukan, kemudian mengevaluasi performanya.</p></li>
-</ol>
+</section>
+<section id="training-model-dengan-k-optimal">
+<h2>13. Training Model dengan K Optimal<a class="headerlink" href="#training-model-dengan-k-optimal" title="Link to this heading">#</a></h2>
+<p>Melatih ulang model KNN menggunakan nilai k optimal yang telah ditemukan, kemudian mengevaluasi performanya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training ulang dengan k optimal</span>
@@ -1137,10 +1159,10 @@ R²   : -0.065045
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="14">
-<li><p>Perbandingan Model Default vs Optimal
-Membandingkan performa model default (k=5) dengan model optimal untuk melihat peningkatan performa setelah hyperparameter tuning.</p></li>
-</ol>
+</section>
+<section id="perbandingan-model-default-vs-optimal">
+<h2>14. Perbandingan Model Default vs Optimal<a class="headerlink" href="#perbandingan-model-default-vs-optimal" title="Link to this heading">#</a></h2>
+<p>Membandingkan performa model default (k=5) dengan model optimal untuk melihat peningkatan performa setelah hyperparameter tuning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat dataframe untuk perbandingan</span>
@@ -1168,10 +1190,10 @@ Metric  Default (k=5) - Train  Default (k=5) - Test  Optimal (k=20) - Train  Opt
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="15">
-<li><p>Visualisasi Hasil Model Optimal
-Visualisasi hasil prediksi model optimal dengan time series plot dan scatter plot untuk mengevaluasi kualitas prediksi secara visual.</p></li>
-</ol>
+</section>
+<section id="visualisasi-hasil-model-optimal">
+<h2>15. Visualisasi Hasil Model Optimal<a class="headerlink" href="#visualisasi-hasil-model-optimal" title="Link to this heading">#</a></h2>
+<p>Visualisasi hasil prediksi model optimal dengan time series plot dan scatter plot untuk mengevaluasi kualitas prediksi secara visual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot hasil prediksi model optimal</span>
@@ -1205,6 +1227,7 @@ Visualisasi hasil prediksi model optimal dengan time series plot dan scatter plo
 <img alt="_images/72bc83cb56fb739f1f97bf0abb4763445c7a0d7b298e6a3fdc616f879981efba.png" src="_images/72bc83cb56fb739f1f97bf0abb4763445c7a0d7b298e6a3fdc616f879981efba.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1243,7 +1266,7 @@ Visualisasi hasil prediksi model optimal dengan time series plot dan scatter plo
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Preprocessing Data (NO2 Semarang)</p>
+        <p class="prev-next-title">Preprocessing Data (NO2 Sidoarjo)</p>
       </div>
     </a>
 </div>
@@ -1252,6 +1275,34 @@ Visualisasi hasil prediksi model optimal dengan time series plot dan scatter plo
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-supervised">2. Load Dataset Supervised</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorasi-data">3. Explorasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data-untuk-modeling">4. Persiapan Data untuk Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-train-dan-test">5. Split Data Train dan Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-regression">7. Training Model KNN Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-pada-data-test">8. Prediksi pada Data Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">9. Evaluasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi">10. Visualisasi Hasil Prediksi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis">11. Residual Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-mencari-k-optimal">12. Hyperparameter Tuning - Mencari K Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-dengan-k-optimal">13. Training Model dengan K Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-default-vs-optimal">14. Perbandingan Model Default vs Optimal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-model-optimal">15. Visualisasi Hasil Model Optimal</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
