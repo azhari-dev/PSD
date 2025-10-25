@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Memahami Data: Fondasi Analisis di Power BI &#8212; My sample book</title>
+    <title>Pembersihan Outlier &#8212; My sample book</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'data-understanding';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deteksi-outlier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Eksplorasi Data" href="eksplorasi-data.html" />
-    <link rel="prev" title="Business Understanding" href="business-understanding.html" />
+    <link rel="next" title="Imbalanced-Learn" href="imbalanced-learn.html" />
+    <link rel="prev" title="1. Pengumpulan Data" href="data-preprocessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,18 +181,13 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Memahami Data: Fondasi Analisis di Power BI</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-understanding.html">Memahami Data: Fondasi Analisis di Power BI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="eksplorasi-data.html">Eksplorasi Data</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="data-preprocessing.html">1. Pengumpulan Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="deteksi-outlier.html">Pembersihan Outlier</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="data-preprocessing.html">1. Pengumpulan Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pembersihan Outlier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="imbalanced-learn.html">Imbalanced-Learn</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="forecasting.html">Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="data-crawling.html">Data Understanding (NO2 Kabupaten Sidoarjo)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -266,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdata-understanding.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdeteksi-outlier.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +291,7 @@
       
       
       
-      <li><a href="_sources/data-understanding.ipynb" target="_blank"
+      <li><a href="_sources/deteksi-outlier.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -380,7 +375,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Memahami Data: Fondasi Analisis di Power BI</h1>
+    <h1>Pembersihan Outlier</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,29 +385,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-utama-dari-pemahaman-data">Manfaat Utama dari Pemahaman Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bi">Power BI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-dalam-memahami-data">Proses dalam Memahami Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">1. Pengumpulan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data-teruntuk-lokasi-dari-data-iris-berada-dalam-aiven-io-platform-cloud-dan-ai-berbasis-open-source">Lokasi Data Teruntuk lokasi dari data IRIS berada dalam aiven.io (platform cloud dan AI berbasis open source):</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan-langkah-untuk-mengumpulkan-data-dilakukan-menggunakan-power-bi-sebagai-berikut">Metode Pengumpulan Langkah untuk mengumpulkan data dilakukan menggunakan Power BI sebagai berikut:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengumpulkan-data-a-menghubungkan-data-dari-mysql-dan-postgresql">Proses Mengumpulkan Data #####a. Menghubungkan Data dari MySQL dan PostgreSQL</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya">B. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menggabungkan-data-dari-kedua-database">C. Menggabungkan Data dari Kedua Database</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data">2. Profiling Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-tentang-dataset">Informasi tentang Dataset</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi">3. Korelasi dan Asosiasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-hubungan-antar-variabel">Memahami Hubungan antar Variabel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-knn">Seleksi outlier menggunakan metode KNN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-lof">Seleksi outlier menggunakan metode LOF</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-abod">Seleksi outlier menggunakan metode ABOD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-knn">Seleksi outlier menggunakan metode KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-lof">Seleksi outlier menggunakan metode LOF</a></li>
 </ul>
             </nav>
         </div>
@@ -424,105 +399,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="memahami-data-fondasi-analisis-di-power-bi">
-<h1>Memahami Data: Fondasi Analisis di Power BI<a class="headerlink" href="#memahami-data-fondasi-analisis-di-power-bi" title="Link to this heading">#</a></h1>
-<p>Pemahaman Data (Data Understanding) adalah tahap fundamental dalam siklus hidup ilmu data atau Knowledge Discovery in Databases (KDD). Tahap awal ini krusial karena bertujuan untuk mendapatkan pemahaman yang mendalam mengenai data sebelum melangkah ke analisis yang lebih kompleks. Keberhasilan keseluruhan proyek data mining sangat bergantung pada seberapa baik data dipahami di tahap ini.</p>
-<p>Berikut adalah rincian aktivitas utama dalam proses memahami data:</p>
-<ol class="arabic simple">
-<li><p>Pengumpulan Data (Data Collection)
-Aktivitas ini berfokus pada penghimpunan data dari berbagai sumber, baik itu database, file (seperti CSV), API, maupun sensor. Tujuannya adalah untuk memastikan semua data yang relevan dan dibutuhkan untuk analisis telah berhasil dikumpulkan.</p></li>
-<li><p>Pemrofilan Data (Data Profiling)
-Pada tahap ini, kita membuat ringkasan karakteristik dari setiap variabel. Ini mencakup identifikasi tipe data (misalnya, numerik atau kategorikal), rentang nilainya, dan distribusi frekuensinya. Selain itu, pemrofilan juga bertujuan untuk mengungkap hubungan awal antarvariabel, sering kali melalui analisis korelasi atau asosiasi.</p></li>
-<li><p>Analisis Korelasi dan Asosiasi
-Fungsi dari kegiatan ini adalah untuk mengukur secara statistik seberapa kuat hubungan antarvariabel. Koefisien korelasi seperti Pearson atau Spearman digunakan untuk mengidentifikasi hubungan linier, sementara teknik asosiasi dipakai untuk menemukan pola keterkaitan antara variabel-variabel kategorikal.</p></li>
-<li><p>Eksplorasi Data (Data Exploration)
-Eksplorasi data melibatkan penggunaan statistik deskriptif (seperti rata-rata, median, modus, dan standar deviasi) serta visualisasi data. Tujuannya adalah untuk memahami distribusi, mendeteksi pola, dan menggali wawasan awal dari dataset.</p></li>
-<li><p>Identifikasi Masalah Kualitas Data
-Langkah ini penting untuk mendeteksi berbagai anomali dalam data, yang meliputi:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Data Hilang (Missing Values): Menemukan adanya sel atau entri yang kosong.</p></li>
-<li><p>Pencilan (Outliers): Mengidentifikasi nilai-nilai ekstrem yang bisa jadi merupakan anomali atau kesalahan input.</p></li>
-<li><p>Duplikasi Data: Menemukan adanya data atau baris yang identik.</p></li>
-<li><p>Inkonsistensi Data: Memeriksa ketidakseragaman format atau nilai dalam data.</p></li>
-</ul>
-<ol class="arabic simple" start="6">
-<li><p>Validasi Data
-Validasi bertujuan untuk memastikan dua hal utama:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Kesesuaian data dengan konteks dan kebutuhan bisnis.</p></li>
-<li><p>Verifikasi bahwa data yang ada secara akurat merepresentasikan fenomena atau realitas yang sedang dianalisis.</p></li>
-</ul>
-<section id="manfaat-utama-dari-pemahaman-data">
-<h2>Manfaat Utama dari Pemahaman Data<a class="headerlink" href="#manfaat-utama-dari-pemahaman-data" title="Link to this heading">#</a></h2>
-<p>Proses pemahaman data yang solid memberikan berbagai keuntungan strategis, antara lain:</p>
-<ul class="simple">
-<li><p>Peningkatan Kualitas Data: Dengan mengenali masalah sejak dini, langkah-langkah pembersihan dan persiapan data menjadi jauh lebih efektif.</p></li>
-<li><p>Efisiensi Waktu dan Biaya: Mencegah kesalahan analisis yang mahal akibat penggunaan data yang berkualitas buruk.</p></li>
-<li><p>Pengambilan Keputusan yang Lebih Baik: Memberikan wawasan awal yang berharga untuk merumuskan hipotesis dan strategi analisis yang tepat.</p></li>
-<li><p>Peningkatan Akurasi Model: Data yang bersih dan dipahami dengan baik merupakan kunci untuk membangun model prediktif yang andal dan akurat.</p></li>
-</ul>
-</section>
-<section id="power-bi">
-<h2>Power BI<a class="headerlink" href="#power-bi" title="Link to this heading">#</a></h2>
-<p>Kita akan menggunakan Power BI untuk melakukan pemanggilan data dan melakukan proses data understanding dan eksplorasi data</p>
-<p>Anda dapat melakukan instalasi di link berikut: <a class="reference external" href="https://www.microsoft.com/en-us/power-platform/products/power-bi/downloads?ocid=ORSEARCH_Bingmsockid=13aa90df998161263c3b85f79d8163f6">https://www.microsoft.com/en-us/power-platform/products/power-bi/downloads?ocid=ORSEARCH_Bingmsockid=13aa90df998161263c3b85f79d8163f6</a></p>
-</section>
-<section id="proses-dalam-memahami-data">
-<h2>Proses dalam Memahami Data<a class="headerlink" href="#proses-dalam-memahami-data" title="Link to this heading">#</a></h2>
-<section id="pengumpulan-data">
-<h3>1. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h3>
-<p>Dataset IRIS adalah dataset yang berisi informasi tentang tiga spesies bunga iris (Setosa, Versicolor, Virginica) dengan fitur utama yaitu; panjang dan lebar dari sepal serta petal.</p>
-<section id="lokasi-data-teruntuk-lokasi-dari-data-iris-berada-dalam-aiven-io-platform-cloud-dan-ai-berbasis-open-source">
-<h4>Lokasi Data Teruntuk lokasi dari data IRIS berada dalam <a class="reference external" href="http://aiven.io">aiven.io</a> (platform cloud dan AI berbasis open source):<a class="headerlink" href="#lokasi-data-teruntuk-lokasi-dari-data-iris-berada-dalam-aiven-io-platform-cloud-dan-ai-berbasis-open-source" title="Link to this heading">#</a></h4>
-<p>Data IRIS petal berada di database MySQL</p>
-<p>Data IRIS sepal berada di database PostgreSQL</p>
-</section>
-<section id="metode-pengumpulan-langkah-untuk-mengumpulkan-data-dilakukan-menggunakan-power-bi-sebagai-berikut">
-<h4>Metode Pengumpulan Langkah untuk mengumpulkan data dilakukan menggunakan Power BI sebagai berikut:<a class="headerlink" href="#metode-pengumpulan-langkah-untuk-mengumpulkan-data-dilakukan-menggunakan-power-bi-sebagai-berikut" title="Link to this heading">#</a></h4>
-<p>pymysql : Digunakan untuk menghubungkan dan mengambil data dari MySQL.</p>
-<p>psycopg2 : Digunakan untuk menghubungkan dan mengambil data dari PostgreSQL.</p>
-<p>pandas : Digunakan untuk membaca dan mengolah data setelah diambil dari database.</p>
-</section>
-<section id="proses-mengumpulkan-data-a-menghubungkan-data-dari-mysql-dan-postgresql">
-<h4>Proses Mengumpulkan Data #####a. Menghubungkan Data dari MySQL dan PostgreSQL<a class="headerlink" href="#proses-mengumpulkan-data-a-menghubungkan-data-dari-mysql-dan-postgresql" title="Link to this heading">#</a></h4>
-<p>Install library yang diperlukan di terminal anda</p>
-<p>saya sarankan anda menggunakan python versi 11 untuk melakukan instalasi pycaret</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pymysql</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span><span class="o">-</span><span class="n">binary</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">sqlalchemy</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">dotenv</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">pycaret</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-    <span class="n">pip</span> <span class="n">install</span> <span class="n">pymysql</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
-</div>
-<p><img alt="image.png" src="attachment:image.png" /></p>
-<p><img alt="image.png" src="attachment:image.png" /></p>
-<p><img alt="image.png" src="attachment:image.png" /></p>
-<ul class="simple">
-<li><p>Koneksikan database dari aiven</p></li>
-<li><p>Masukkan code berikut pada Power BI:</p>
-<ul>
-<li><p>Masuk Power BI</p></li>
-<li><p>Pilih Get Data -&gt; More -&gt; Python Scripting</p></li>
-<li><p>Masukkan code a,b.c berikut lalu klik connect</p></li>
-</ul>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="pembersihan-outlier">
+<h1>Pembersihan Outlier<a class="headerlink" href="#pembersihan-outlier" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -563,30 +441,48 @@ Validasi bertujuan untuk memastikan dua hal utama:</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data dari MySQL:
-   id        Class  petal length  petal width
-0   1  Iris-setosa           1.4          0.2
-1   2  Iris-setosa           1.4          0.2
-2   3  Iris-setosa           1.3          0.2
-3   4  Iris-setosa           1.5          0.2
-4   5  Iris-setosa           1.4          0.2
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">-------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">PG_PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;AVNS_cAY9-ITh6Sy3eujURVI&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">PG_DATABASE</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">mysql_engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="sa">f</span><span class="s2">&quot;mysql+pymysql://</span><span class="si">{</span><span class="n">MYSQL_USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">MYSQL_PASSWORD</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">MYSQL_HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">MYSQL_PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MYSQL_DATABASE</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">pg_engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="sa">f</span><span class="s2">&quot;postgresql+psycopg2://</span><span class="si">{</span><span class="n">PG_USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PG_PASSWORD</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">PG_HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PG_PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">PG_DATABASE</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">mysql_query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM iris_mysql;&quot;</span>
 
-Data dari PostgreSQL:
-   id        Class  sepal length  sepal width
-0   1  Iris-setosa           5.1          3.5
-1   2  Iris-setosa           4.9          3.0
-2   3  Iris-setosa           4.7          3.2
-3   4  Iris-setosa           4.6          3.1
-4   5  Iris-setosa           5.0          3.6
+<span class="nn">File &lt;string&gt;:2,</span> in <span class="ni">create_engine</span><span class="nt">(url, **kwargs)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\util\deprecations.py:281,</span> in <span class="ni">deprecated_params.&lt;locals&gt;.decorate.&lt;locals&gt;.warned</span><span class="nt">(fn, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="n">_warn_with_version</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>             <span class="n">messages</span><span class="p">[</span><span class="n">m</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>             <span class="n">versions</span><span class="p">[</span><span class="n">m</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>             <span class="n">version_warnings</span><span class="p">[</span><span class="n">m</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>             <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>         <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">281</span> <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\create.py:617,</span> in <span class="ni">create_engine</span><span class="nt">(url, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>         <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>             <span class="n">dbapi_args</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">617</span>     <span class="n">dbapi</span> <span class="o">=</span> <span class="n">dbapi_meth</span><span class="p">(</span><span class="o">**</span><span class="n">dbapi_args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="n">dialect_args</span><span class="p">[</span><span class="s2">&quot;dbapi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dbapi</span>
+<span class="g g-Whitespace">    </span><span class="mi">621</span> <span class="n">dialect_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;compiler_linting&quot;</span><span class="p">,</span> <span class="n">compiler</span><span class="o">.</span><span class="n">NO_LINTING</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\dialects\mysql\pymysql.py:89,</span> in <span class="ni">MySQLDialect_pymysql.import_dbapi</span><span class="nt">(cls)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span><span class="w"> </span><span class="nf">import_dbapi</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIModule</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">return</span> <span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;pymysql&quot;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pymysql&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya">
-<h2>B. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya<a class="headerlink" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -606,80 +502,18 @@ Data dari PostgreSQL:
 <span class="c1">#Menghapus file yang di upload sebelumnya</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data dari MySQL:
-   id        Class  petal length  petal width
-0   1  Iris-setosa           1.4          0.2
-1   2  Iris-setosa           1.4          0.2
-2   3  Iris-setosa           1.3          0.2
-3   4  Iris-setosa           1.5          0.2
-4   5  Iris-setosa           1.4          0.2
 
- Data dari PostgreSQL:
-   id        Class  sepal length  sepal width
-0   1  Iris-setosa           5.1          3.5
-1   2  Iris-setosa           4.9          3.0
-2   3  Iris-setosa           4.7          3.2
-3   4  Iris-setosa           4.6          3.1
-4   5  Iris-setosa           5.0          3.6
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="c-menggabungkan-data-dari-kedua-database">
-<h2>C. Menggabungkan Data dari Kedua Database<a class="headerlink" href="#c-menggabungkan-data-dari-kedua-database" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_postgres</span><span class="p">,</span> <span class="n">df_mysql</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_postgres</span><span class="p">,</span> <span class="n">df_mysql</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data gabungan:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data gabungan:
-      id           Class  sepal length  sepal width  petal length  petal width
-0      1     Iris-setosa           5.1          3.5           1.4          0.2
-1      2     Iris-setosa           4.9          3.0           1.4          0.2
-2      3     Iris-setosa           4.7          3.2           1.3          0.2
-3      4     Iris-setosa           4.6          3.1           1.5          0.2
-4      5     Iris-setosa           5.0          3.6           1.4          0.2
-..   ...             ...           ...          ...           ...          ...
-145  146  Iris-virginica           6.7          3.0           5.2          2.3
-146  147  Iris-virginica           6.3          2.5           5.0          1.9
-147  148  Iris-virginica           6.5          3.0           5.2          2.0
-148  149  Iris-virginica           6.2          3.4           5.4          2.3
-149  150  Iris-virginica           5.9          3.0           5.1          1.8
-
-[150 rows x 6 columns]
-</pre></div>
 </div>
-</div>
-</div>
-</section>
-<section id="profiling-data">
-<h2>2. Profiling Data<a class="headerlink" href="#profiling-data" title="Link to this heading">#</a></h2>
-<p>Profiling data termasuk langkah penting dalam memahami karakteristik dataset sebelum melakukan analisis lebih lanjut.</p>
-<section id="informasi-tentang-dataset">
-<h3>Informasi tentang Dataset<a class="headerlink" href="#informasi-tentang-dataset" title="Link to this heading">#</a></h3>
-<p>Menampilkan Informasi Dataset</p>
-<p>Data Iris mempunyai 4 feature dengan tipe data:</p>
-<p>petal_length: Continous</p>
-<p>petal_width: Continous</p>
-<p>sepal_length: Continous</p>
-<p>sepal_width: Continous</p>
-</section>
-</section>
-<section id="korelasi-dan-asosiasi">
-<h2>3. Korelasi dan Asosiasi<a class="headerlink" href="#korelasi-dan-asosiasi" title="Link to this heading">#</a></h2>
-<section id="memahami-hubungan-antar-variabel">
-<h3>Memahami Hubungan antar Variabel<a class="headerlink" href="#memahami-hubungan-antar-variabel" title="Link to this heading">#</a></h3>
-<p>Pilih Python Visual pada pilihan di visualizations dan pilih feature dan masukkan kode ini</p>
+<section id="seleksi-outlier-menggunakan-metode-abod">
+<h2>Seleksi outlier menggunakan metode ABOD<a class="headerlink" href="#seleksi-outlier-menggunakan-metode-abod" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_data</span>
@@ -701,83 +535,83 @@ Data dari PostgreSQL:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_5d88a_row4_col1 {
+#T_19105_row4_col1 {
   background-color: lightgreen;
 }
 </style>
-<table id="T_5d88a">
+<table id="T_19105">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_5d88a_level0_col0" class="col_heading level0 col0" >Description</th>
-      <th id="T_5d88a_level0_col1" class="col_heading level0 col1" >Value</th>
+      <th id="T_19105_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_19105_level0_col1" class="col_heading level0 col1" >Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_5d88a_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_5d88a_row0_col0" class="data row0 col0" >Session id</td>
-      <td id="T_5d88a_row0_col1" class="data row0 col1" >6108</td>
+      <th id="T_19105_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_19105_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_19105_row0_col1" class="data row0 col1" >6639</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_5d88a_row1_col0" class="data row1 col0" >Original data shape</td>
-      <td id="T_5d88a_row1_col1" class="data row1 col1" >(150, 4)</td>
+      <th id="T_19105_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_19105_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_19105_row1_col1" class="data row1 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_5d88a_row2_col0" class="data row2 col0" >Transformed data shape</td>
-      <td id="T_5d88a_row2_col1" class="data row2 col1" >(150, 4)</td>
+      <th id="T_19105_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_19105_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_19105_row2_col1" class="data row2 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_5d88a_row3_col0" class="data row3 col0" >Numeric features</td>
-      <td id="T_5d88a_row3_col1" class="data row3 col1" >4</td>
+      <th id="T_19105_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_19105_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_19105_row3_col1" class="data row3 col1" >4</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_5d88a_row4_col0" class="data row4 col0" >Preprocess</td>
-      <td id="T_5d88a_row4_col1" class="data row4 col1" >True</td>
+      <th id="T_19105_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_19105_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_19105_row4_col1" class="data row4 col1" >True</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_5d88a_row5_col0" class="data row5 col0" >Imputation type</td>
-      <td id="T_5d88a_row5_col1" class="data row5 col1" >simple</td>
+      <th id="T_19105_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_19105_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_19105_row5_col1" class="data row5 col1" >simple</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_5d88a_row6_col0" class="data row6 col0" >Numeric imputation</td>
-      <td id="T_5d88a_row6_col1" class="data row6 col1" >mean</td>
+      <th id="T_19105_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_19105_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_19105_row6_col1" class="data row6 col1" >mean</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_5d88a_row7_col0" class="data row7 col0" >Categorical imputation</td>
-      <td id="T_5d88a_row7_col1" class="data row7 col1" >mode</td>
+      <th id="T_19105_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_19105_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_19105_row7_col1" class="data row7 col1" >mode</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_5d88a_row8_col0" class="data row8 col0" >CPU Jobs</td>
-      <td id="T_5d88a_row8_col1" class="data row8 col1" >-1</td>
+      <th id="T_19105_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_19105_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_19105_row8_col1" class="data row8 col1" >-1</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_5d88a_row9_col0" class="data row9 col0" >Use GPU</td>
-      <td id="T_5d88a_row9_col1" class="data row9 col1" >False</td>
+      <th id="T_19105_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_19105_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_19105_row9_col1" class="data row9 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_5d88a_row10_col0" class="data row10 col0" >Log Experiment</td>
-      <td id="T_5d88a_row10_col1" class="data row10 col1" >False</td>
+      <th id="T_19105_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_19105_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_19105_row10_col1" class="data row10 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_5d88a_row11_col0" class="data row11 col0" >Experiment Name</td>
-      <td id="T_5d88a_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+      <th id="T_19105_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_19105_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_19105_row11_col1" class="data row11 col1" >anomaly-default-name</td>
     </tr>
     <tr>
-      <th id="T_5d88a_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_5d88a_row12_col0" class="data row12 col0" >USI</td>
-      <td id="T_5d88a_row12_col1" class="data row12 col1" >ddca</td>
+      <th id="T_19105_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_19105_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_19105_row12_col1" class="data row12 col1" >dacf</td>
     </tr>
   </tbody>
 </table>
@@ -926,7 +760,7 @@ Data dari PostgreSQL:
 <p>Tapi pada csv diatas sudah bersih 142 data</p>
 </section>
 <section id="seleksi-outlier-menggunakan-metode-knn">
-<h3>Seleksi outlier menggunakan metode KNN<a class="headerlink" href="#seleksi-outlier-menggunakan-metode-knn" title="Link to this heading">#</a></h3>
+<h2>Seleksi outlier menggunakan metode KNN<a class="headerlink" href="#seleksi-outlier-menggunakan-metode-knn" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_data</span>
@@ -946,83 +780,83 @@ Data dari PostgreSQL:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_fd602_row4_col1 {
+#T_3f19f_row4_col1 {
   background-color: lightgreen;
 }
 </style>
-<table id="T_fd602">
+<table id="T_3f19f">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fd602_level0_col0" class="col_heading level0 col0" >Description</th>
-      <th id="T_fd602_level0_col1" class="col_heading level0 col1" >Value</th>
+      <th id="T_3f19f_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_3f19f_level0_col1" class="col_heading level0 col1" >Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fd602_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fd602_row0_col0" class="data row0 col0" >Session id</td>
-      <td id="T_fd602_row0_col1" class="data row0 col1" >2776</td>
+      <th id="T_3f19f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3f19f_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_3f19f_row0_col1" class="data row0 col1" >4131</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_fd602_row1_col0" class="data row1 col0" >Original data shape</td>
-      <td id="T_fd602_row1_col1" class="data row1 col1" >(150, 4)</td>
+      <th id="T_3f19f_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_3f19f_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_3f19f_row1_col1" class="data row1 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_fd602_row2_col0" class="data row2 col0" >Transformed data shape</td>
-      <td id="T_fd602_row2_col1" class="data row2 col1" >(150, 4)</td>
+      <th id="T_3f19f_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_3f19f_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_3f19f_row2_col1" class="data row2 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_fd602_row3_col0" class="data row3 col0" >Numeric features</td>
-      <td id="T_fd602_row3_col1" class="data row3 col1" >4</td>
+      <th id="T_3f19f_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_3f19f_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_3f19f_row3_col1" class="data row3 col1" >4</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_fd602_row4_col0" class="data row4 col0" >Preprocess</td>
-      <td id="T_fd602_row4_col1" class="data row4 col1" >True</td>
+      <th id="T_3f19f_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_3f19f_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_3f19f_row4_col1" class="data row4 col1" >True</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_fd602_row5_col0" class="data row5 col0" >Imputation type</td>
-      <td id="T_fd602_row5_col1" class="data row5 col1" >simple</td>
+      <th id="T_3f19f_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_3f19f_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_3f19f_row5_col1" class="data row5 col1" >simple</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_fd602_row6_col0" class="data row6 col0" >Numeric imputation</td>
-      <td id="T_fd602_row6_col1" class="data row6 col1" >mean</td>
+      <th id="T_3f19f_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_3f19f_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_3f19f_row6_col1" class="data row6 col1" >mean</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_fd602_row7_col0" class="data row7 col0" >Categorical imputation</td>
-      <td id="T_fd602_row7_col1" class="data row7 col1" >mode</td>
+      <th id="T_3f19f_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_3f19f_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_3f19f_row7_col1" class="data row7 col1" >mode</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_fd602_row8_col0" class="data row8 col0" >CPU Jobs</td>
-      <td id="T_fd602_row8_col1" class="data row8 col1" >-1</td>
+      <th id="T_3f19f_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_3f19f_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_3f19f_row8_col1" class="data row8 col1" >-1</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_fd602_row9_col0" class="data row9 col0" >Use GPU</td>
-      <td id="T_fd602_row9_col1" class="data row9 col1" >False</td>
+      <th id="T_3f19f_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_3f19f_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_3f19f_row9_col1" class="data row9 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_fd602_row10_col0" class="data row10 col0" >Log Experiment</td>
-      <td id="T_fd602_row10_col1" class="data row10 col1" >False</td>
+      <th id="T_3f19f_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_3f19f_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_3f19f_row10_col1" class="data row10 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_fd602_row11_col0" class="data row11 col0" >Experiment Name</td>
-      <td id="T_fd602_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+      <th id="T_3f19f_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_3f19f_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_3f19f_row11_col1" class="data row11 col1" >anomaly-default-name</td>
     </tr>
     <tr>
-      <th id="T_fd602_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_fd602_row12_col0" class="data row12 col0" >USI</td>
-      <td id="T_fd602_row12_col1" class="data row12 col1" >bdc7</td>
+      <th id="T_3f19f_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_3f19f_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_3f19f_row12_col1" class="data row12 col1" >1792</td>
     </tr>
   </tbody>
 </table>
@@ -1167,7 +1001,7 @@ Data dari PostgreSQL:
 </div>
 </section>
 <section id="seleksi-outlier-menggunakan-metode-lof">
-<h3>Seleksi outlier menggunakan metode LOF<a class="headerlink" href="#seleksi-outlier-menggunakan-metode-lof" title="Link to this heading">#</a></h3>
+<h2>Seleksi outlier menggunakan metode LOF<a class="headerlink" href="#seleksi-outlier-menggunakan-metode-lof" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_data</span>
@@ -1187,83 +1021,83 @@ Data dari PostgreSQL:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_386ca_row4_col1 {
+#T_126e9_row4_col1 {
   background-color: lightgreen;
 }
 </style>
-<table id="T_386ca">
+<table id="T_126e9">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_386ca_level0_col0" class="col_heading level0 col0" >Description</th>
-      <th id="T_386ca_level0_col1" class="col_heading level0 col1" >Value</th>
+      <th id="T_126e9_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_126e9_level0_col1" class="col_heading level0 col1" >Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_386ca_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_386ca_row0_col0" class="data row0 col0" >Session id</td>
-      <td id="T_386ca_row0_col1" class="data row0 col1" >2707</td>
+      <th id="T_126e9_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_126e9_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_126e9_row0_col1" class="data row0 col1" >8080</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_386ca_row1_col0" class="data row1 col0" >Original data shape</td>
-      <td id="T_386ca_row1_col1" class="data row1 col1" >(150, 4)</td>
+      <th id="T_126e9_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_126e9_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_126e9_row1_col1" class="data row1 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_386ca_row2_col0" class="data row2 col0" >Transformed data shape</td>
-      <td id="T_386ca_row2_col1" class="data row2 col1" >(150, 4)</td>
+      <th id="T_126e9_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_126e9_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_126e9_row2_col1" class="data row2 col1" >(150, 4)</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_386ca_row3_col0" class="data row3 col0" >Numeric features</td>
-      <td id="T_386ca_row3_col1" class="data row3 col1" >4</td>
+      <th id="T_126e9_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_126e9_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_126e9_row3_col1" class="data row3 col1" >4</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_386ca_row4_col0" class="data row4 col0" >Preprocess</td>
-      <td id="T_386ca_row4_col1" class="data row4 col1" >True</td>
+      <th id="T_126e9_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_126e9_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_126e9_row4_col1" class="data row4 col1" >True</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_386ca_row5_col0" class="data row5 col0" >Imputation type</td>
-      <td id="T_386ca_row5_col1" class="data row5 col1" >simple</td>
+      <th id="T_126e9_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_126e9_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_126e9_row5_col1" class="data row5 col1" >simple</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_386ca_row6_col0" class="data row6 col0" >Numeric imputation</td>
-      <td id="T_386ca_row6_col1" class="data row6 col1" >mean</td>
+      <th id="T_126e9_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_126e9_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_126e9_row6_col1" class="data row6 col1" >mean</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_386ca_row7_col0" class="data row7 col0" >Categorical imputation</td>
-      <td id="T_386ca_row7_col1" class="data row7 col1" >mode</td>
+      <th id="T_126e9_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_126e9_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_126e9_row7_col1" class="data row7 col1" >mode</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_386ca_row8_col0" class="data row8 col0" >CPU Jobs</td>
-      <td id="T_386ca_row8_col1" class="data row8 col1" >-1</td>
+      <th id="T_126e9_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_126e9_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_126e9_row8_col1" class="data row8 col1" >-1</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_386ca_row9_col0" class="data row9 col0" >Use GPU</td>
-      <td id="T_386ca_row9_col1" class="data row9 col1" >False</td>
+      <th id="T_126e9_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_126e9_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_126e9_row9_col1" class="data row9 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_386ca_row10_col0" class="data row10 col0" >Log Experiment</td>
-      <td id="T_386ca_row10_col1" class="data row10 col1" >False</td>
+      <th id="T_126e9_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_126e9_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_126e9_row10_col1" class="data row10 col1" >False</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_386ca_row11_col0" class="data row11 col0" >Experiment Name</td>
-      <td id="T_386ca_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+      <th id="T_126e9_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_126e9_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_126e9_row11_col1" class="data row11 col1" >anomaly-default-name</td>
     </tr>
     <tr>
-      <th id="T_386ca_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_386ca_row12_col0" class="data row12 col0" >USI</td>
-      <td id="T_386ca_row12_col1" class="data row12 col1" >7f46</td>
+      <th id="T_126e9_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_126e9_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_126e9_row12_col1" class="data row12 col1" >25ff</td>
     </tr>
   </tbody>
 </table>
@@ -1408,9 +1242,6 @@ Data dari PostgreSQL:
 </div>
 </section>
 </section>
-<div class="toctree-wrapper compound">
-</div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1443,20 +1274,20 @@ Data dari PostgreSQL:
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="business-understanding.html"
+       href="data-preprocessing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Business Understanding</p>
+        <p class="prev-next-title">1. Pengumpulan Data</p>
       </div>
     </a>
     <a class="right-next"
-       href="eksplorasi-data.html"
+       href="imbalanced-learn.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Eksplorasi Data</p>
+        <p class="prev-next-title">Imbalanced-Learn</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1476,29 +1307,9 @@ Data dari PostgreSQL:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-utama-dari-pemahaman-data">Manfaat Utama dari Pemahaman Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bi">Power BI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-dalam-memahami-data">Proses dalam Memahami Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">1. Pengumpulan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data-teruntuk-lokasi-dari-data-iris-berada-dalam-aiven-io-platform-cloud-dan-ai-berbasis-open-source">Lokasi Data Teruntuk lokasi dari data IRIS berada dalam aiven.io (platform cloud dan AI berbasis open source):</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan-langkah-untuk-mengumpulkan-data-dilakukan-menggunakan-power-bi-sebagai-berikut">Metode Pengumpulan Langkah untuk mengumpulkan data dilakukan menggunakan Power BI sebagai berikut:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengumpulkan-data-a-menghubungkan-data-dari-mysql-dan-postgresql">Proses Mengumpulkan Data #####a. Menghubungkan Data dari MySQL dan PostgreSQL</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya">B. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menggabungkan-data-dari-kedua-database">C. Menggabungkan Data dari Kedua Database</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data">2. Profiling Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-tentang-dataset">Informasi tentang Dataset</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi">3. Korelasi dan Asosiasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-hubungan-antar-variabel">Memahami Hubungan antar Variabel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-knn">Seleksi outlier menggunakan metode KNN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-lof">Seleksi outlier menggunakan metode LOF</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-abod">Seleksi outlier menggunakan metode ABOD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-knn">Seleksi outlier menggunakan metode KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-outlier-menggunakan-metode-lof">Seleksi outlier menggunakan metode LOF</a></li>
 </ul>
   </nav></div>
 

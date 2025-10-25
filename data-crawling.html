@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Understanding (NO2 Kabupaten Sidoarjo) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data-crawling';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Eksplorasi Data (NO2 Sidoarjo)" href="eksplorasi-data-no2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pas-photo.jpeg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/pas-photo.jpeg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profil Saya
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-understanding.html">Memahami Data: Fondasi Analisis di Power BI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="eksplorasi-data.html">Eksplorasi Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-preprocessing.html">1. Pengumpulan Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="deteksi-outlier.html">Pembersihan Outlier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imbalanced-learn.html">Imbalanced-Learn</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="forecasting.html">Forecasting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eksplorasi-data-no2.html">Eksplorasi Data (NO2 Sidoarjo)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Understanding (NO2 Kabupaten Sidoarjo)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdata-crawling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/data-crawling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Understanding (NO2 Kabupaten Sidoarjo)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">1.1 Sumber Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode">1.2 Struktur Kolom (kolom yang muncul berdasarkan cuplikan &amp; kode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-missing-value">1.3 Indentifikasi Missing Value</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-understanding-no2-kabupaten-sidoarjo">
+<h1>Data Understanding (NO2 Kabupaten Sidoarjo)<a class="headerlink" href="#data-understanding-no2-kabupaten-sidoarjo" title="Link to this heading">#</a></h1>
+<section id="sumber-data">
+<h2>1.1 Sumber Data<a class="headerlink" href="#sumber-data" title="Link to this heading">#</a></h2>
+<p>Data NO₂ diperoleh dari Copernicus / Sentinel-5P melalui endpoint openEO (<code class="docutils literal notranslate"><span class="pre">openeo.dataspace.copernicus.eu</span></code>) seperti yang terlihat pada skrip Python yang diberikan. Dalam alur yang dipakai:</p>
+<ul class="simple">
+<li><p>Koleksi yang dimuat: <code class="docutils literal notranslate"><span class="pre">SENTINEL_5P_L2</span></code>.</p></li>
+<li><p>Rentang temporal: <code class="docutils literal notranslate"><span class="pre">[&quot;2022-10-01&quot;,</span> <span class="pre">&quot;2025-10-01&quot;]</span></code> (contoh pada kode).</p></li>
+<li><p>Area of interest (AOI): sebuah poligon kecil di sekitar koordinat longitude ~110.37–110.48 dan latitude ~ -6.94– -7.03.</p></li>
+<li><p>Band yang diminta: <code class="docutils literal notranslate"><span class="pre">NO2</span></code> (komponen NO₂ dari produk pemantauan atmosfer Sentinel-5P).</p></li>
+<li><p>Agregasi yang dilakukan:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask</span></code> untuk menandai nilai invalid (negatif) sebagai tidak valid,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggregate_temporal_period(period=&quot;day&quot;,</span> <span class="pre">reducer=&quot;mean&quot;)</span></code> → rata-rata harian,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggregate_spatial(geometries=aoi,</span> <span class="pre">reducer=&quot;mean&quot;)</span></code> → rata-rata spasial di atas AOI,</p></li>
+<li><p>hasil diekspor batch ke CSV.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># connection = openeo.connect(&quot;openeo.dataspace.copernicus.eu&quot;).authenticate_oidc()</span>
+<span class="c1"># print(&quot;Connected to Copernicus Data Space Ecosystem&quot;)</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected to Copernicus Data Space Ecosystem&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">     </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;openeo&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">[</span>
+            <span class="p">[</span>
+              <span class="mf">112.48915779619239</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.330985416832718</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.48915779619239</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.578877834418705</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.85189705981338</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.578877834418705</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.85189705981338</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.330985416832718</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.48915779619239</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.330985416832718</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">s5p</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.48915779619239</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.578877834418705</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">112.85189705981338</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.330985416832718</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2022-10-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-10-01&quot;</span><span class="p">],</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mask_invalid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
+
+<span class="n">s5p_masked</span> <span class="o">=</span> <span class="n">s5p</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">s5p</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mask_invalid</span><span class="p">))</span>
+
+<span class="n">daily_mean</span> <span class="o">=</span> <span class="n">s5p_masked</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+
+<span class="n">daily_mean_aoi</span> <span class="o">=</span> <span class="n">daily_mean</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">daily_mean_aoi</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span><span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;CSV&quot;</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">download_files</span><span class="p">(</span><span class="s2">&quot;data-copernicus&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;data-copernicus&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data-copernicus&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File ditemukan:&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">break</span>
+    
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+
+<span class="n">df_monthly</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: send &#39;start&#39;
+0:00:14 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: created (progress 0%)
+0:00:19 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: created (progress 0%)
+0:00:26 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: created (progress 0%)
+0:00:34 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: created (progress 0%)
+0:00:44 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: created (progress 0%)
+0:00:57 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:01:13 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:01:32 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:01:56 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:02:27 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:03:04 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:03:51 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:04:50 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:05:50 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:06:51 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:07:52 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:08:52 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:09:52 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:10:57 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:11:58 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:12:58 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:14:07 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: running (progress N/A)
+0:15:08 Job &#39;j-25102414322040478e7ad8db67c95fc5&#39;: finished (progress 100%)
+File ditemukan: timeseries.csv
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Harseven\AppData\Local\Temp\ipykernel_4640\1944329125.py:73: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.
+  df[&quot;month&quot;] = df[&quot;date&quot;].dt.to_period(&quot;M&quot;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>feature_index</th>
+      <th>NO2</th>
+      <th>month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-10-02 00:00:00+00:00</td>
+      <td>0</td>
+      <td>0.000048</td>
+      <td>2022-10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-10-01 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2022-10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-10-05 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2022-10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-04 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2022-10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2022-09-30 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2022-09</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1092</th>
+      <td>2025-01-09 00:00:00+00:00</td>
+      <td>0</td>
+      <td>0.000029</td>
+      <td>2025-01</td>
+    </tr>
+    <tr>
+      <th>1093</th>
+      <td>2025-01-15 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2025-01</td>
+    </tr>
+    <tr>
+      <th>1094</th>
+      <td>2025-01-11 00:00:00+00:00</td>
+      <td>0</td>
+      <td>0.000058</td>
+      <td>2025-01</td>
+    </tr>
+    <tr>
+      <th>1095</th>
+      <td>2025-01-14 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2025-01</td>
+    </tr>
+    <tr>
+      <th>1096</th>
+      <td>2025-01-12 00:00:00+00:00</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>2025-01</td>
+    </tr>
+  </tbody>
+</table>
+<p>1097 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode">
+<h2>1.2 Struktur Kolom (kolom yang muncul berdasarkan cuplikan &amp; kode)<a class="headerlink" href="#struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode" title="Link to this heading">#</a></h2>
+<p>Setelah job dieksekusi dan CSV dibaca ke pandas.DataFrame, kolom yang tampak pada cuplikan adalah:</p>
+<p>date</p>
+<p>Tipe: datetime (pada kode lalu dikonversi pd.to_datetime(df[“date”])).</p>
+<p>Format contoh: 2024-10-12 00:00:00+00:00 → termasuk offset zona waktu (+00:00 / UTC).</p>
+<p>Arti: tanggal tengah periode agregasi (rata-rata harian). Karena agregasi period=”day”, setiap baris mewakili nilai rata-rata NO₂ untuk hari tersebut.</p>
+<p>feature_index</p>
+<p>Tipe: integer (contoh: 0 pada banyak baris).</p>
+<p>Arti kemungkinan: indeks fitur/patch/pixel tile dari koleksi openEO (bila batch menghasilkan beberapa fitur/spatial tiles). Karena kamu meng-aggregate_spatial menggunakan satu AOI, nilai ini sering tetap 0. Bila pipeline menghasilkan beberapa spatial features, nilai ini membantu membedakan feature geometry.</p>
+<p>NO2</p>
+<p>Tipe: float (angka desimal kecil, atau NaN bila tidak ada pengukuran valid hari itu).</p>
+<p>Arti: nilai rata-rata NO₂ hasil agregasi spasial+temporal untuk AOI pada tanggal tersebut.</p>
+<p>Rentang: pada cuplikan terlihat sangat kecil (mis. 0.000033, 0.000054), menandakan unit kolom kepadatan (perlu verifikasi metadata).</p>
+<p>NaN: menandakan tidak ada data valid (mis. semua piksel negatif/invalid pada hari itu, atau tidak ada pengamatan yang lolos mask).</p>
+<p>Contoh Table Data :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data-copernicus/timeseries.csv&#39;</span><span class="p">)</span>
+<span class="n">new_df</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<span class="n">new_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>feature_index</th>
+      <th>NO2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-09-30</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-10-01</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-10-02</td>
+      <td>0</td>
+      <td>0.000048</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-03</td>
+      <td>0</td>
+      <td>0.000040</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2022-10-04</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1092</th>
+      <td>2025-09-26</td>
+      <td>0</td>
+      <td>0.000030</td>
+    </tr>
+    <tr>
+      <th>1093</th>
+      <td>2025-09-27</td>
+      <td>0</td>
+      <td>0.000036</td>
+    </tr>
+    <tr>
+      <th>1094</th>
+      <td>2025-09-28</td>
+      <td>0</td>
+      <td>0.000015</td>
+    </tr>
+    <tr>
+      <th>1095</th>
+      <td>2025-09-29</td>
+      <td>0</td>
+      <td>0.000031</td>
+    </tr>
+    <tr>
+      <th>1096</th>
+      <td>2025-09-30</td>
+      <td>0</td>
+      <td>0.000014</td>
+    </tr>
+  </tbody>
+</table>
+<p>1097 rows × 3 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="indentifikasi-missing-value">
+<h2>1.3 Indentifikasi Missing Value<a class="headerlink" href="#indentifikasi-missing-value" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_count</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">missing_percent</span> <span class="o">=</span> <span class="p">(</span><span class="n">missing_count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">missing_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Missing Count&#39;</span><span class="p">:</span> <span class="n">missing_count</span><span class="p">,</span>
+    <span class="s1">&#39;Missing Percent (%)&#39;</span><span class="p">:</span> <span class="n">missing_percent</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="n">missing_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Missing Count</th>
+      <th>Missing Percent (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>date</th>
+      <td>0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>feature_index</th>
+      <td>0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>NO2</th>
+      <td>254</td>
+      <td>23.15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Berdasarkan hasil pemeriksaan terhadap dataset yang diperoleh dari platform Copernicus Open Data (Sentinel-5P L2), terdapat tiga kolom utama yaitu:</p>
+<p>date — berisi informasi tanggal pengambilan data, tanpa nilai kosong (0 missing value).</p>
+<p>feature_index — kolom indeks fitur yang digunakan sistem, tanpa nilai kosong (0 missing value).</p>
+<p>NO2 — berisi konsentrasi Nitrogen Dioksida (NO₂) rata-rata harian pada area pengamatan, dengan 254 nilai yang hilang (missing values).</p>
+<p>Kehilangan data pada kolom NO₂ kemungkinan disebabkan oleh beberapa faktor seperti gangguan atmosfer, awan tebal, atau noise dalam citra satelit Sentinel-5P yang menghambat pembacaan sensor.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eksplorasi-data-no2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Eksplorasi Data (NO2 Sidoarjo)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">1.1 Sumber Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-kolom-kolom-yang-muncul-berdasarkan-cuplikan-kode">1.2 Struktur Kolom (kolom yang muncul berdasarkan cuplikan &amp; kode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-missing-value">1.3 Indentifikasi Missing Value</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

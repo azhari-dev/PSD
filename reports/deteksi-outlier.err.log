@@ -1,0 +1,103 @@
+Traceback (most recent call last):
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\jupyter_core\utils\__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\jupyter_core\utils\__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 664, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\Harseven\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+from sqlalchemy import create_engine
+
+MYSQL_HOST = "database-aplikasi-saya-mysql-muhammadazhariii1209-4402.j.aivencloud.com"
+MYSQL_PORT = 14467
+MYSQL_USER = "avnadmin"
+MYSQL_PASSWORD = "AVNS_-m75fnNFJLYQ3JbqMc4"
+MYSQL_DATABASE = "defaultdb"
+
+PG_HOST = "database-aplikasi-saya-muhammadazhariii1209-4402.j.aivencloud.com"
+PG_PORT = 14467
+PG_USER = "avnadmin"
+PG_PASSWORD = "AVNS_cAY9-ITh6Sy3eujURVI"
+PG_DATABASE = "defaultdb"
+
+mysql_engine = create_engine(
+    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+)
+
+pg_engine = create_engine(
+    f"postgresql+psycopg2://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DATABASE}"
+)
+
+mysql_query = "SELECT * FROM iris_mysql;"
+df_mysql = pd.read_sql(mysql_query, mysql_engine)
+
+pg_query = "SELECT * FROM iris_postgre;"
+df_postgres = pd.read_sql(pg_query, pg_engine)
+
+print("Data dari MySQL:")
+print(df_mysql.head())
+
+print("\nData dari PostgreSQL:")
+print(df_postgres.head())
+------------------
+
+
+[31m-------------------------------------------------[39m
+[31mModuleNotFoundError[39mTraceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 16[39m
+[32m     13[39m PG_PASSWORD = [33m"[39m[33mAVNS_cAY9-ITh6Sy3eujURVI[39m[33m"[39m
+[32m     14[39m PG_DATABASE = [33m"[39m[33mdefaultdb[39m[33m"[39m
+[32m---> [39m[32m16[39m mysql_engine = [43mcreate_engine[49m[43m([49m
+[32m     17[39m [43m    [49m[33;43mf[39;49m[33;43m"[39;49m[33;43mmysql+pymysql://[39;49m[38;5;132;43;01m{[39;49;00m[43mMYSQL_USER[49m[38;5;132;43;01m}[39;49;00m[33;43m:[39;49m[38;5;132;43;01m{[39;49;00m[43mMYSQL_PASSWORD[49m[38;5;132;43;01m}[39;49;00m[33;43m@[39;49m[38;5;132;43;01m{[39;49;00m[43mMYSQL_HOST[49m[38;5;132;43;01m}[39;49;00m[33;43m:[39;49m[38;5;132;43;01m{[39;49;00m[43mMYSQL_PORT[49m[38;5;132;43;01m}[39;49;00m[33;43m/[39;49m[38;5;132;43;01m{[39;49;00m[43mMYSQL_DATABASE[49m[38;5;132;43;01m}[39;49;00m[33;43m"[39;49m
+[32m     18[39m [43m)[49m
+[32m     20[39m pg_engine = create_engine(
+[32m     21[39m     [33mf[39m[33m"[39m[33mpostgresql+psycopg2://[39m[38;5;132;01m{[39;00mPG_USER[38;5;132;01m}[39;00m[33m:[39m[38;5;132;01m{[39;00mPG_PASSWORD[38;5;132;01m}[39;00m[33m@[39m[38;5;132;01m{[39;00mPG_HOST[38;5;132;01m}[39;00m[33m:[39m[38;5;132;01m{[39;00mPG_PORT[38;5;132;01m}[39;00m[33m/[39m[38;5;132;01m{[39;00mPG_DATABASE[38;5;132;01m}[39;00m[33m"[39m
+[32m     22[39m )
+[32m     24[39m mysql_query = [33m"[39m[33mSELECT * FROM iris_mysql;[39m[33m"[39m
+
+[36mFile [39m[32m<string>:2[39m, in [36mcreate_engine[39m[34m(url, **kwargs)[39m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\util\deprecations.py:281[39m, in [36mdeprecated_params.<locals>.decorate.<locals>.warned[39m[34m(fn, *args, **kwargs)[39m
+[32m    274[39m     [38;5;28;01mif[39;00m m [38;5;129;01min[39;00m kwargs:
+[32m    275[39m         _warn_with_version(
+[32m    276[39m             messages[m],
+[32m    277[39m             versions[m],
+[32m    278[39m             version_warnings[m],
+[32m    279[39m             stacklevel=[32m3[39m,
+[32m    280[39m         )
+[32m--> [39m[32m281[39m [38;5;28;01mreturn[39;00m [43mfn[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\create.py:617[39m, in [36mcreate_engine[39m[34m(url, **kwargs)[39m
+[32m    615[39m         [38;5;28;01mif[39;00m k [38;5;129;01min[39;00m kwargs:
+[32m    616[39m             dbapi_args[k] = pop_kwarg(k)
+[32m--> [39m[32m617[39m     dbapi = [43mdbapi_meth[49m[43m([49m[43m*[49m[43m*[49m[43mdbapi_args[49m[43m)[49m
+[32m    619[39m dialect_args[[33m"[39m[33mdbapi[39m[33m"[39m] = dbapi
+[32m    621[39m dialect_args.setdefault([33m"[39m[33mcompiler_linting[39m[33m"[39m, compiler.NO_LINTING)
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\dialects\mysql\pymysql.py:89[39m, in [36mMySQLDialect_pymysql.import_dbapi[39m[34m(cls)[39m
+[32m     87[39m [38;5;129m@classmethod[39m
+[32m     88[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mimport_dbapi[39m([38;5;28mcls[39m) -> DBAPIModule:
+[32m---> [39m[32m89[39m     [38;5;28;01mreturn[39;00m [38;5;28;43m__import__[39;49m[43m([49m[33;43m"[39;49m[33;43mpymysql[39;49m[33;43m"[39;49m[43m)[49m
+
+[31mModuleNotFoundError[39m: No module named 'pymysql'
+
